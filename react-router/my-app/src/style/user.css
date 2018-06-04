@@ -1,0 +1,15 @@
+.user-list{
+    display: flex;
+    justify-content: flex-start;
+
+}
+.list-component li{
+    width: 100px;
+    height: 40px;
+    background: #f60;
+    border: 1px solid rgb(38, 0, 255)
+}
+
+.list-router{
+
+}

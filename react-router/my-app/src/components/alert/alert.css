@@ -1,0 +1,16 @@
+.modal_alert{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.6)
+}
+.alert_main{
+    width: 600px;
+    height: 600px;
+    background: #fff;
+}
