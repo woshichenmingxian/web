@@ -202,5 +202,6 @@
          doSomeInstancing.__proto__ .__proto__ ===doSomething.prototype.__proto__ //true
 
          doSomeInstancing.__proto__ .__proto__ ===Object.prototype //true
- - hasOwnProperty 与 Object.keys()是不会变量Object,从而可以优化性能 ，检查属性是否为 undefined 是不能够检查其是否存在的。该属性可能已存在，但其值恰好被设置成了 undefined
+ - hasOwnProperty 与 Object.keys()是不会遍历Object, 从而可以优化性能
+ - 检查属性是否为 undefined 是不能够检查其是否存在的。该属性可能已存在，但其值恰好被设置成了 undefined
       
