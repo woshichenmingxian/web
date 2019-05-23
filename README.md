@@ -182,3 +182,24 @@
       - 明文 + 加密算法 + 私钥 => 密文， 密文 + 解密算法 + 公钥 => 明文 
       - 由于加密和解密使用了两个不同的密钥，这就是非对称加密“非对称”的原因。
       - 非对称加密的缺点是加密和解密花费时间长、速度慢，只适合对少量数据进行加密。
+      
+## 原型链
+#### 案例
+      function doSomething(){}
+      doSomething.prototype.foo = "bar"; 
+      var doSomeInstancing = new doSomething();
+      doSomeInstancing.prop = "some value"; 
+      console.log( doSomeInstancing );
+      
+      如上所示, doSomeInstancing 中的__proto__是 doSomething.prototype. 但这是做什么的呢？当你访问doSomeInstancing 中的一个属性，浏览器首先会查看doSomeInstancing 中是否存在这个属性。
+
+      如果 doSomeInstancing 不包含属性信息, 那么浏览器会在 doSomeInstancing 的 __proto__ 中进行查找(同 doSomething.prototype). 如属性在 doSomeInstancing 的 __proto__ 中查找到，则使用 doSomeInstancing 中 __proto__ 的属性。
+
+      否则，如果 doSomeInstancing 中 __proto__ 不具有该属性，则检查doSomeInstancing 的 __proto__ 的  __proto__ 是否具有该属性。默认情况下，任何函数的原型属性 __proto__ 都是 window.Object.prototype. 因此, 通过doSomeInstancing 的 __proto__ 的  __proto__  ( 同 doSomething.prototype 的 __proto__ (同  Object.prototype)) 来查找要搜索的属性。
+
+      如果属性不存在 doSomeInstancing 的 __proto__ 的  __proto__ 中， 那么就会在doSomeInstancing 的 __proto__ 的  __proto__ 的  __proto__ 中查找。然而, 这里存在个问题：doSomeInstancing 的 __proto__ 的  __proto__ 的  __proto__ 其实不存在。因此，只有这样，在 __proto__ 的整个原型链被查看之后，这里没有更多的 __proto__ ， 浏览器断言该属性不存在，并给出属性值为 undefined 的结论。
+      
+      doSomeInstancing.__proto__ .__proto__ ===doSomething.prototype.__proto__ //true
+      
+      doSomeInstancing.__proto__ .__proto__ ===Object.prototype //true
+      
