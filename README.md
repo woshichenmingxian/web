@@ -67,7 +67,7 @@
 
 ##### micro-task(微任务)
       - Promise
-      - process.nextTick
+      - process.nextTick 直接进入当前的执行stack尾部，不会进入callbackqueue
 
 ## TCP和UDP的区别
 
