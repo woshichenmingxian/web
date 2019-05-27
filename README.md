@@ -206,8 +206,8 @@
  - 检查属性是否为 undefined 是不能够检查其是否存在的。该属性可能已存在，但其值恰好被设置成了 undefined
  
  ## render 函数
- ##### vue:render
- - render 函数 跟 template 一样都是创建 html 模板的，但是有些场景中用 template 实现起来代码冗长繁琐而且有大量重复，使用render 函数就简便很多。
+ ### vue:render
+ #### render 函数 跟 template 一样都是创建 html 模板的，但是有些场景中用 template 实现起来代码冗长繁琐而且有大量重复，使用render 函数就简便很多。
  - render 函数的返回值（VNode）
  - render 函数的参数（createElement）
    - createElement 函数的返回值（VNode）
@@ -217,6 +217,8 @@
      - 子虚拟节点 (VNodes)，由 createElement() 构建而成，也可以使用字符串来生成“文本虚拟节点”。类型：{String | Array}。可选。
      
  ### react:render
+ #### render 函数:将组建或者虚拟DOM元素渲染到真实的DOM上，将任务交给浏览器，进而进行layout和paint等步骤
+ #### 触发render函数条件
  - 1. 首次加载
  - 2. setState:componentWillReceiveProps => shouldComponentUpdate => componentWillUpdate => render => componentDidUpdate
  - 3. 接受到新的props
