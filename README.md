@@ -226,5 +226,9 @@
  #### 触发render函数条件
  - 1. 首次加载
  - 2. setState:componentWillReceiveProps => shouldComponentUpdate => componentWillUpdate => render => componentDidUpdate
+      - 当shouldComponentUpdate执行时，返回true，进行下一步，this.state没有被更新,返回false，停止，更新this.state
+      - 当componentWillUpdate被调用时，this.state也没有被更新
+      - 直到render被调用时候，this.state才被更新。
+      - 下一次render函数调用(或者下一次shouldComponentUpdate返回false时)才能得到更新后的this.state
  - 3. 接受到新的props
 
