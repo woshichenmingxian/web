@@ -219,9 +219,10 @@
  ### react:render
  #### render 函数:将组建或者虚拟DOM元素渲染到真实的DOM上，将任务交给浏览器，进而进行layout和paint等步骤
  - ReactComponent：render( ReactElement:element, DOMElement:container, [function callback] )
-   - 接收2-3个参数，并返回ReactComponent类型的对象，当组件被添加到DOM中后，执行回调。在这里涉及到了两个React类型--ReactComponent和ReactElement，着重分析。
+   - 接收2-3个参数，并返回ReactComponent类型的对象，当组件被添加到DOM中后，执行回调。
  - ReactElement：createElement( string/ReactClass:type, [object props], [children ...] )
    - 第一个参数可以接受字符串（如“p”，“div”等HTML的tag）或ReactClass，第二个参数为传递的参数如class这些attr，第三个为子元素，可以为字符串和ReactElement。
+   
  #### 触发render函数条件
  - 1. 首次加载
  - 2. setState:componentWillReceiveProps => shouldComponentUpdate => componentWillUpdate => render => componentDidUpdate
