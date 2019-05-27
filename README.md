@@ -204,4 +204,15 @@
          doSomeInstancing.__proto__ .__proto__ ===Object.prototype //true
  - hasOwnProperty 与 Object.keys()是不会遍历Object, 从而可以优化性能
  - 检查属性是否为 undefined 是不能够检查其是否存在的。该属性可能已存在，但其值恰好被设置成了 undefined
-      
+ 
+ ## render 函数
+ ##### vue:render
+ - render 函数 跟 template 一样都是创建 html 模板的，但是有些场景中用 template 实现起来代码冗长繁琐而且有大量重复，使用render 函数就简便很多。
+ - render 函数的返回值（VNode）
+ - render 函数的参数（createElement）
+   - createElement 函数的返回值（VNode）
+   - createElement 函数的参数（三个）
+     - 一个 HTML 标签字符串，组件选项对象，或者解析上述任何一种的一个 async 异步函数。类型：{String | Object | Function}。必需。
+     - 一个包含模板相关属性的数据对象你可以在 template 中使用这些特性。类型：{Object}。可选。
+     - 子虚拟节点 (VNodes)，由 createElement() 构建而成，也可以使用字符串来生成“文本虚拟节点”。类型：{String | Array}。可选。
+
