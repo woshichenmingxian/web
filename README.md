@@ -207,11 +207,11 @@
  - 检查属性是否为 undefined 是不能够检查其是否存在的。该属性可能已存在，但其值恰好被设置成了 undefined
  ## vue响应式
  #### vue.js采用数据劫持结合发布者-订阅者的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时，发布消息给订阅者，触发相应的监听回调。
- - ● 首先，需要对observe的数据对象进行递归遍历，包括子属性对象的属性，都加上setter   getter。这样的话，给这个对象的某个属性赋值，就会触发setter，那么就能监听到数据变化。（其实是通过Object.defineProperty()实现监听数据变化的）
+ -  首先，需要对observe的数据对象进行递归遍历，包括子属性对象的属性，都加上setter   getter。这样的话，给这个对象的某个属性赋值，就会触发setter，那么就能监听到数据变化。（其实是通过Object.defineProperty()实现监听数据变化的）
 
-- ● 然后，需要compile解析模板指令，将模板中的变量替换成数据，接着初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者。一旦数据有变动，订阅者收到通知，就会更新视图
+-  然后，需要compile解析模板指令，将模板中的变量替换成数据，接着初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者。一旦数据有变动，订阅者收到通知，就会更新视图
 
-- ● 接着，Watcher订阅者是Observer和Compile之间通信的桥梁，主要负责：
+-  接着，Watcher订阅者是Observer和Compile之间通信的桥梁，主要负责：
 
          1）在自身实例化时，往属性订阅器（Dep）里面添加自己
 
@@ -219,7 +219,7 @@
 
          3）待属性变动，dep.notice()通知时，就调用自身的update()方法，并触发Compile中绑定的回调
 
-- ● 最后，viewmodel(vue实例对象)作为数据绑定的入口，整合Observer、Compile、Watcher三者，通过Observer来监听自己的model数据变化，通过Compile来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 (ViewModel)-》视图更新(view)；视图变化(view)-》数据(ViewModel)变更的双向绑定效果。
+-  最后，viewmodel(vue实例对象)作为数据绑定的入口，整合Observer、Compile、Watcher三者，通过Observer来监听自己的model数据变化，通过Compile来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的通信桥梁，达到数据变化 (ViewModel)-》视图更新(view)；视图变化(view)-》数据(ViewModel)变更的双向绑定效果。
 
  ### 状态更新，异步render,同步渲染影响性能，
  - Vue.js实现了一个queue队列，在下一个tick的时候会统一执行queue中Watcher的run。同时，拥有相同id的Watcher不会被重复加入到该queue中去，所以不会执行多次，Watcher的run。最终更新视图只会最后执行进入tick内的Watcher，从而避免同步更新。
