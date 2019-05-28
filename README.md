@@ -266,9 +266,11 @@
  - diff提供三种节点操作：删除、插入、移动,
  - 新与旧节点，newIndex>oldIndex,本节点旧会移动
  - react: diff dom，但是不 diff 数据
+    - React有shouldComponentUpdate的原因是因为React的diff不是diff的数据，而是diff的html tag。
+    - 数据变不变，React其实是不知道的，必须要玩家手动控制 数据变不变，你可以一直setState同样的数据，如果不设置shouldComponentUpdate =>false，那这个组件就会一直render。
  - vue: diff 数据（其实不能叫 diff，而是通过对更改的劫持，自动获得了 diff），也 diff dom（其实可以不 diff，它这个机制，其实用不到 vdom）
  - angular: diff 数据，但是不 diff dom
-   - 数据变不变，React其实是不知道的，必须要玩家手动控制 数据变不变，你可以一直setState同样的数据，如果不设置shouldComponentUpdate =>false，那这个组件就会一直render。
+   
 
  
 
