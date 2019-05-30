@@ -279,6 +279,6 @@
      - callback: 回调函数，该函数调用时会传一个require参数
      - chunkName: 模块名，用于构建时生成文件时命名使用 指定chunk名称
      
- - import(/* webpackChunkName: "word" */ '../work/index.vue'); es6语法 webpackChunkName指定chunk名称
+ - import(/* webpackChunkName: "word" */ '../work/index.vue');返回promise对象 es6语法 webpackChunkName指定chunk名称
  
 
