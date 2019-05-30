@@ -271,6 +271,14 @@
  - vue: diff 数据（其实不能叫 diff，而是通过对更改的劫持，自动获得了 diff），也 diff dom（其实可以不 diff，它这个机制，其实用不到 vdom）
  - angular: diff 数据，但是不 diff dom
    
+ ### 按需引入 require.ensure 与 import() 打包
+#### 在需要的时候才下载依赖的模块，当参数指定的模块都下载下来了（下载下来的模块还没执行），便执行参数指定的回调函数,会创建一个chunk，且可以指定该chunk的名称，如果这个chunk名已经存在了，则将本次依赖的模块合并到已经存在的chunk中，最后这个chunk在webpack构建的时候会单独生成一个文件。
 
+ - require.ensure(dependencies: String[], callback: function([require]), [chunkName: String]) (webpack内置函数)
+     - dependencies: 依赖的模块数组
+     - callback: 回调函数，该函数调用时会传一个require参数
+     - chunkName: 模块名，用于构建时生成文件时命名使用 指定chunk名称
+     
+ - import(/* webpackChunkName: "word" */ '../work/index.vue'); es6语法 webpackChunkName指定chunk名称
  
 
