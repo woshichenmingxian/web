@@ -205,6 +205,27 @@
          doSomeInstancing.__proto__ .__proto__ ===Object.prototype //true
  - hasOwnProperty 与 Object.keys()是不会遍历Object, 从而可以优化性能
  - 检查属性是否为 undefined 是不能够检查其是否存在的。该属性可能已存在，但其值恰好被设置成了 undefined
+ 
+ ## vue 数据双向绑定
+   - Object.defineProperty(target,atrr,{get,set,...});//对target的attr进行监听 在对象基础上更改attr
+   
+   - Object.defineProperty缺陷：
+       - 只能劫持对象的属性,因此我们需要对每个对象的每个属性进行遍历，如果属性值也是对象那么需要深度遍历,显然能劫持一个完整的对象是更好的选择
+       - 无法监听数组变化,vm.items[indexOfItem] = newValue这种是无法检测的。
+ 
+  -  Proxy 它在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截 可以直接监听对象而非属性返回一个新对象
+  - const obj = {};
+  - const newObj = new Proxy(obj, {
+      - get: function(target, key, receiver) {
+            - console.log(`getting ${key}!`);
+            - return Reflect.get(target, key, receiver);
+      - },
+      - set: function(target, key, value, receiver) {
+             - console.log(target, key, value, receiver);
+             - return Reflect.set(target, key, value, receiver);
+      - },
+   - });
+ 
  ## vue响应式
  #### vue.js采用数据劫持结合发布者-订阅者的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时，发布消息给订阅者，触发相应的监听回调。
  -  首先，需要对observe的数据对象进行递归遍历，包括子属性对象的属性，都加上setter   getter。这样的话，给这个对象的某个属性赋值，就会触发setter，那么就能监听到数据变化。（其实是通过Object.defineProperty()实现监听数据变化的）
