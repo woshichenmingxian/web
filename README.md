@@ -262,7 +262,7 @@
       #### setState只会覆盖state，不会减少减少原来的状态，replaceState是完全替换原来的状态，相当于赋值，将原来的state替换为另一个对象，如果新状态属性减少，那么state中就没有这个状态了
  - 3. 接受到新的props
  
- ### diff
+ ## diff
  - diff提供三种节点操作：删除、插入、移动,
  - 新与旧节点，newIndex>oldIndex,本节点旧会移动
  - react: diff dom，但是不 diff 数据
@@ -271,7 +271,7 @@
  - vue: diff 数据（其实不能叫 diff，而是通过对更改的劫持，自动获得了 diff），也 diff dom（其实可以不 diff，它这个机制，其实用不到 vdom）
  - angular: diff 数据，但是不 diff dom
    
- ### 按需引入 require.ensure 与 import() 打包
+ ## 按需引入 require.ensure 与 import() 打包
 #### 在需要的时候才下载依赖的模块，当参数指定的模块都下载下来了（下载下来的模块还没执行），便执行参数指定的回调函数,会创建一个chunk，且可以指定该chunk的名称，如果这个chunk名已经存在了，则将本次依赖的模块合并到已经存在的chunk中，最后这个chunk在webpack构建的时候会单独生成一个文件。
 
  - require.ensure(dependencies: String[], callback: function([require]), [chunkName: String]) (webpack内置函数)
@@ -281,4 +281,15 @@
      
  - import(/* webpackChunkName: "word" */ '../work/index.vue');返回promise对象 es6语法 webpackChunkName指定chunk
  
+ ## web优化
+ - 静态资源的压缩合并（JS 代码压缩合并、CSS 代码压缩合并、雪碧图）减少http请求次数
+ - 静态资源缓存（资源名称加 MD5 戳） 名称控制缓存
+ - 使用 CDN 让资源加载更快 CDN 会提供专业的加载优化方案
+ - CSS 放前面，JS 放后面 避免浏览器渲染过程时的阻塞
+ - 懒加载（图片懒加载、下拉加载更多）
+ - 减少DOM 查询，对 DOM 查询做缓存
+ - 减少DOM 操作，多个操作尽量合并在一起执行（DocumentFragment）
+ - 事件节流
+ - 尽早执行操作（DOMContentLoaded）
+ - 使用 SSR 后端渲染，数据直接输出到 HTML 中，减少浏览器使用 JS 模板渲染页面 HTML 的时间
 
