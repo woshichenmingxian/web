@@ -313,4 +313,37 @@
  - 事件节流
  - 尽早执行操作（DOMContentLoaded）
  - 使用 SSR 后端渲染，数据直接输出到 HTML 中，减少浏览器使用 JS 模板渲染页面 HTML 的时间
+ 
+ ## 大数据render
+ #### DocumentFragment可以缓存节点信息 多条在植入渲染 减少repain reflow
+ - render(){
+      - let totalCount=10000;//10W
+      - let size=20;//每次渲染20
+      - let curentCount=1;//当前渲染的阶段
+      - let needCount=totalCount/size;//需要的次数
+      - let div=document.querySelector('.login');
+
+      - function loop(){
+         -  //当前渲染次数少于需要的次数
+         -  if(curentCount<=needCount){
+            -    window.requestAnimationFrame(add) //动画 根据浏览器刷新帧数进行频率递归 
+         -  }else{
+            -    window.cancelAnimationFrame(add)
+         -  }
+      - }
+
+      - function add(){
+       - let fragment=document.createDocumentFragment();//创建dom节点片段
+       - for(let i=0;i<size;i++){
+          -   let node=document.createElement('div');
+          -   node.innerHTML=' '+((curentCount-1)*size+i)+' ';
+          -   fragment.appendChild(node);//保存节点片段
+       - }
+       - div.appendChild(fragment);//node节点存入size条，在植入渲染到真是的dom中 减少repain reflow
+       - curentCount+=1;
+       - loop()
+      - }
+
+      - loop()
+    - },
 
