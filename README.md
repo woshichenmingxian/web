@@ -333,6 +333,7 @@
       - }
 
       - function add(){
+      
        - let fragment=document.createDocumentFragment();//创建dom节点片段
        - for(let i=0;i<size;i++){
           -   let node=document.createElement('div');
