@@ -1,5 +1,5 @@
 ## 内存:栈与堆
-#### 基本类型是：Undefined/Null/Boolean/Number/String
+#### 基本类型是：Undefined/Null/Boolean/Number/String/Symbol
 
 - 基本类型的值存在内存中，被保存在栈内存中。从一个变量向另一个变量复制基本类型的值，会创建这个值的一个副本。
 
